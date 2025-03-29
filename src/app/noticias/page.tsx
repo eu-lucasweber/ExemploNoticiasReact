@@ -8,7 +8,7 @@ export default async function Noticias() {
         <div>
             <h2>Notícias</h2>
             <div className='flex-container'>
-                {noticias.map((noticia) => <CardNoticia key={noticia.id} noticia={noticia} />)}
+                {noticias.map((noticia) => <CardNoticia key={noticia.id} {...noticia} />)}
             </div>
         </div>
     )

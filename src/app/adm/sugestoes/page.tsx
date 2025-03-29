@@ -1,5 +1,6 @@
 import { getSugestoes } from "@/lib/sugestaoDB"
 import CardSugestao from "@/components/cardsugestao"
+import Link from "next/link";
 
 export default async function Sugestao() {
     const sugestoes = await getSugestoes();
@@ -9,7 +10,7 @@ export default async function Sugestao() {
             <ul className="lista">
                 {sugestoes.length > 0 ? (
                     sugestoes.map((sugestaoTemp) => (
-                        <li key={sugestaoTemp.id}>
+                        <li key={sugestaoTemp.id.toString()}>
                             <CardSugestao {...sugestaoTemp} />
                         </li>
                     ))
@@ -19,6 +20,7 @@ export default async function Sugestao() {
                     </li>
                 )}
             </ul>
+            <p className='voltar'><Link href='/adm'>&#8592; Voltar</Link></p>
         </div>
     )
 }
