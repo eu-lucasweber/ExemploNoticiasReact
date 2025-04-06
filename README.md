@@ -6,7 +6,7 @@
   2. Execute `npm install` para instalar as dependências.
   3. Crie o arquivo `.env` com os dados para conexão ao DB, segue exemplo:
   ```bash
-    DATABASE_URL= "mongodb+srv://<user>:<pass>@localhost/"
+    DATABASE_URL= "mongodb+srv://<user>:<pass>@localhost:27017/"
   ```
 
 ## Uso

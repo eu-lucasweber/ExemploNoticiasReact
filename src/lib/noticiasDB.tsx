@@ -1,11 +1,13 @@
+'use server'
 import Noticia from "@/models/noticia"
 import connectDB from "@/lib/connectDB"
 import { Document } from "mongoose"
+import { revalidatePath } from "next/cache";
 
 export interface noticiaProps {
     titulo: String,
     descricao: String,
-    imagem: String
+    imagem: String,
 }
 
 export interface noticiaComIdProps extends noticiaProps {
@@ -20,11 +22,21 @@ async function connDB() {
         .catch(err => {
             console.log('Erro ao conectar com o banco.')
             console.log(err)
-        })
+        });
+}
+
+export async function gravaNoticia({titulo, descricao, imagem}: noticiaProps) {
+    await connDB()
+    const novaNoticia = new Noticia({
+        titulo: titulo,
+        descricao: descricao,
+        imagem: imagem
+      })
+    await novaNoticia.save()
 }
 
 export async function getNoticias() {
-    await connDB()
+    await connDB();
     const noticias: Document[] = await Noticia.find({});
 
     return noticias.map((noticia) => ({
@@ -36,6 +48,12 @@ export async function getNoticias() {
 }
 
 export async function getNoticia(id: String) {
-    await connDB()
-    return await Noticia.findById(id)
+    await connDB();
+    return await Noticia.findById(id);
+}
+
+export async function apagaNotica(id: String, imagem: String) {
+    await connDB();
+    await Noticia.findByIdAndDelete(id);
+    revalidatePath('/adm/noticias');
 }
