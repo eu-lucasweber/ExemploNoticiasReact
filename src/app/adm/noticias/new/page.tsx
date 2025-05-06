@@ -1,9 +1,10 @@
 'use client'
 import FormEditarNoticia from "@/components/formeditarnoticia";
-import { noticiaComIdProps } from "@/lib/noticiasDB";
+import { gravaNoticia } from "@/lib/noticiasDB";
+import { ReactElement } from "react";
 
 
-export default async function NoticasNew() {
+export default function NoticasNew() {
     const noticia = {
         id: '',
         titulo: '',
@@ -11,6 +12,6 @@ export default async function NoticasNew() {
         imagem: '',
     };
     return(
-        <FormEditarNoticia editar={false} operacaoNoticia={() => {return 0;}} {...noticia}/>
+        <FormEditarNoticia editar={false} operacaoNoticia={gravaNoticia} {...noticia}/>
     )
 }

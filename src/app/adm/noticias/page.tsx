@@ -7,6 +7,7 @@ export default async function Noticia() {
     return (
         <div>
             <h2>Administrar notícias</h2>
+            <h3 className='buttonLink'><Link href='/adm/noticias/new'>Adicionar notícia</Link></h3>
             <ul className="lista">
                 {noticias.length > 0 ? (
                     noticias.map((noticiaTemp) => (
@@ -20,7 +21,6 @@ export default async function Noticia() {
                 </li>
                 )}
             </ul>
-            <h3 className='buttonLink'><Link href='/adm/noticias/new'>Adicionar notícia</Link></h3>
             <p className='voltar'><Link href='/adm'>&#8592; Voltar</Link></p>
         </div>
     )
